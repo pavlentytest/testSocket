@@ -13,7 +13,7 @@ console.log("Server started...");
 
 var SOCKET_LIST = {};
 
-var io = require('socket.io');
+var io = require('socket.io')(serv,{});
 io.sockets.on('connection',function(socket) {
     socket.id = Math.random();
     socket.x = 0;
