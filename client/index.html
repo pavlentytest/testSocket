@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="field" width="500" height="500" style="border:1px solid red;"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js">
+</script>
+<script>
+    var field = document.getElementById("field").getContext("2d");
+    field.font = "36px Arial";
+
+    var socket = io();
+
+    socket.on("newPositions",function (data) {
+        field.clearRect(0,0,500,500);
+        for(var i=0;i<data.length;i++) {
+            field.fillText(data[i].number,data[i].x,data[i].y);
+        }
+    });
+</script>
+
+</body>
+</html>
